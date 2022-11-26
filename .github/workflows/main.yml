@@ -1,16 +1,25 @@
+
+name: Docker Image CI
+
 on:
   push:
-    branches:
-      - master
-
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
 
 jobs:
+
   build:
+
     runs-on: ubuntu-latest
 
     steps:
-      - name: 'Testing GitHub Action'
-        run: pwd
-      
-      - name: 'Testing Prenting on Java'
-        run: echo helloJava
+    - uses: actions/checkout@v3
+    - name: "Login to Docker Hub"
+      run: docker login --username mahmoudsafan2 --password dckr_pat_X7W5VPGiquKbZjrHph5N_KA1LXM
+   
+    - name: "Bulding docker image"
+      run: docker build -t mahmoudsafan2/hellojava .
+
+    - name: "pushing to docker"
+      run: docker push mahmoudsafan2/hellojava
