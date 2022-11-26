@@ -1,1 +1,16 @@
+on:
+  push:
+    branches:
+      - master
 
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 'Testing GitHub Action'
+        run: pwd
+      
+      - name: 'Testing Prenting on Java'
+        run: echo helloJava
